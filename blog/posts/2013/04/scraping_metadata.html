@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head title="David Springate's blog"><meta charset="utf-8"><meta content="width=device-width, initiali-scale=1.0, user-scalable=yes" name="viewport"><div class="container-fluid well"><h1>What is this?</h1><p>David Springate's personal blog on programming, data, informatics, biostatistics and evolution</p></div><div class="subnav"><ul class="nav nav-pills"><li><a href="/index.html">Home</a></li><li><a href="/pages/about.html">About</a></li><li><a href="/pages/research.html">Research</a></li><li><a href="/pages/papers.html">Papers</a></li><li><a href="https://github.com/DASpringate">Github</a></li></ul></div><link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="/css/smartphone.css" media="only screen and (max-device-width:480px)" rel="stylesheet" type="text/css"></head><body><div class="container-fluid"><div class="row-fluid"><div class="span1"></div><div class="span9"><h1>Scraping organism metadata for Treebase repositories from GOLD using Python and R</h1>
+
+<p>I recently wanted to get hold of habitat/phenotype/sequencing metadata for the individual organisms of  an archived <a href="http://treebase.org/treebase-web/home.html">Treebase</a> project.)</p>
+
+<p>The <a href="http://www.genomesonline.org/">GOLD</a> database holds  more than 18000 full genomes.  For many of these it provides pretty good metadata (<a href="http://genomesonline.org/cgi-bin/GOLD/bin/GOLDCards.cgi?goldstamp=Gc00536">GOLDcards</a>) which are indirectly linked  to Treebase via <a href="http://www.ncbi.nlm.nih.gov/taxonomy">NCBI</a> taxa <a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;amp;id=122368">IDs</a>.</p>
+
+<p>Unfortunately GOLD does not seem to have any kind of API for systematic downloads, so I hacked together a very <a href="https://gist.github.com/2929217">quick-and-dirty scraper</a> in Python that reads in taxa from a Treebase repo, follows the links to each species NCBI page and downloads the linked GOLDcard, if it exists.</p>
+
+<p>Here is the code. You will need the external BeautifulSoup and lxml libraries for this to work - both are fantastic. (The Treebase repo here is from Wu et al. 2009**, just change the url string for a different repo&hellip;):</p>
+
+<p>Once you have downloaded all of the available files, It would be great to have your metadata in a nice flatfile with one line per taxa, right?  I did this with a little <a href="https://gist.github.com/2929366">R script</a> using the rather wonderful readHTMLtable() function in the XML (install.packages(&#39;XML&#39;)) package. </p>
+
+<p>The output is a semicolon separated file with taxa in the rows and the different categories of metadata in columns. The metadata is often fairly incomplete, and  there are plenty of omissions, but hopefully it will become more useful as more deposits are made to GOLD.</p>
+
+<p>** Wu D., Hugenholtz P., Mavromatis K., Pukall R., Dalin E., Ivanova N.N., Kunin V., Goodwin L., Wu M., Tindall B.J., Hooper S.D., Pati A., Lykidis A., Spring S., Anderson I.J., D’haeseleer P., Zemla A., Singer M., Lapidus A., Nolan M., Copeland A., Chen F., Cheng J., Lucas S., Kerfeld C., Lang E., Gronow S., Chain P., Bruce D., Rubin E.M., Kyrpides N.C., Klenk H., &amp; Eisen J.A. 2009. A phylogeny-driven genomic encyclopaedia of Bacteria and Archaea. Nature, 462(7276): 1056-1060.</p>
+<h6>Posted on 2013-04-16</h6><div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'daspringate'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</div><div class="span2"><h3>Tags</h3><ul><li><a href="/tags/R.html">R (2)</a></li><li><a href="/tags/tutorials.html">tutorials (1)</a></li><li><a href="/tags/subsetting.html">subsetting (1)</a></li><li><a href="/tags/vectorisation.html">vectorisation (1)</a></li><li><a href="/tags/Python.html">Python (1)</a></li><li><a href="/tags/Bioinformatics.html">Bioinformatics (1)</a></li></ul></div></div><div class="span12"><div class="span2"></div><div class="span8"><footer class="footer"><p class="right back_to_top"><a href="#">&uArr; Page Top</a></p><p><a href="http://twitter.com/datajujitsu">@datajujitsu</a>&nbsp; 2013</p></footer></div></div></div></body></html>

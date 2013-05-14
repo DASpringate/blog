@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?><rss version="2.0">
+  <channel>
+    <title>What is this? David Springate's personal blog</title>
+    <link>http://daspringate.github.com</link>
+    <description>David Springate's personal blog on programming, data, informatics, biostatistics and evolution</description>
+    <category>R</category>
+    <category>Clojure</category>
+    <category>data</category>
+    <category>informatics</category>
+    <category>biostatistics</category>
+    <item><title>Two R tutorials for beginners</title><link>/posts/2013/04/beginners_tutorials.html</link><category>R</category><category>tutorials</category><category>subsetting</category><category>vectorisation</category><description>&lt;h1&gt;Two R tutorials for beginners&lt;/h1&gt;
+
+&lt;p&gt;I am currently in the process of rescuing some of the pages from my now defunct datajujitsu.co.uk blogger blog and moving to this Github/Clojure/Bootstrap version.  I also today gave a tutorial to the University of Manchester on data cleaning and subsetting, so I am killing two birds with one stone by linking to the &lt;a href=&quot;http://rpubs.com/&quot;&gt;Rpubs&lt;/a&gt; pages for both this and a short tutorial I gave last year on vectorisation.&lt;/p&gt;
+
+&lt;p&gt;The tutorials are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://rpubs.com/daspringate/subsetting&quot;&gt;Subsetting in R: Spring cleaning your data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://rpubs.com/daspringate/vectorisation&quot;&gt;Speeding up your R code - vectorisation tricks for beginners&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The R markdown source file for both of these are available on &lt;a href=&quot;https://github.com/DASpringate/tutorials&quot;&gt;my github page&lt;/a&gt;. Rpubs is a great site from the people behind RStudio that allows you to upload R markdown scripts compiled using Knitr in no time at all.  &lt;/p&gt;
+
+&lt;p&gt;Using R Markdown, Knitr, RStudio and Rpubs to produce and publish tutorials has proved a complete joy.  It is simple, quick and painless to get pages online with embedded R code and output.  &lt;/p&gt;
+
+&lt;p&gt;I have also produced a slide presentation for an internal seminar series in my department using R Markdown, Knitr, Pandoc and Beamer. I was really pleased with the results (Which are also on my &lt;a href=&quot;https://github.com/DASpringate/tutorials/tree/master/Primary_Care_Databases/March_2013&quot;&gt;github page&lt;/a&gt;) and how easily I was able to achieve them, particularly with  the huge reduction of Latex boilerplate I was forced to write.  I will be doing all of my presentations with this method in future and will blog about the workflow for doing so in due course.&lt;/p&gt;
+</description></item>
+    <item><title>Scraping organism metadata for Treebase repositories from GOLD using Python and R</title><link>/posts/2013/04/scraping_metadata.html</link><category>R</category><category>Python</category><category>Bioinformatics</category><description>&lt;h1&gt;Scraping organism metadata for Treebase repositories from GOLD using Python and R&lt;/h1&gt;
+
+&lt;p&gt;I recently wanted to get hold of habitat/phenotype/sequencing metadata for the individual organisms of  an archived &lt;a href=&quot;http://treebase.org/treebase-web/home.html&quot;&gt;Treebase&lt;/a&gt; project.)&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;http://www.genomesonline.org/&quot;&gt;GOLD&lt;/a&gt; database holds  more than 18000 full genomes.  For many of these it provides pretty good metadata (&lt;a href=&quot;http://genomesonline.org/cgi-bin/GOLD/bin/GOLDCards.cgi?goldstamp=Gc00536&quot;&gt;GOLDcards&lt;/a&gt;) which are indirectly linked  to Treebase via &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/taxonomy&quot;&gt;NCBI&lt;/a&gt; taxa &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;amp;amp;id=122368&quot;&gt;IDs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately GOLD does not seem to have any kind of API for systematic downloads, so I hacked together a very &lt;a href=&quot;https://gist.github.com/2929217&quot;&gt;quick-and-dirty scraper&lt;/a&gt; in Python that reads in taxa from a Treebase repo, follows the links to each species NCBI page and downloads the linked GOLDcard, if it exists.&lt;/p&gt;
+
+&lt;p&gt;Here is the code. You will need the external BeautifulSoup and lxml libraries for this to work - both are fantastic. (The Treebase repo here is from Wu et al. 2009**, just change the url string for a different repo&amp;hellip;):&lt;/p&gt;
+
+&lt;p&gt;Once you have downloaded all of the available files, It would be great to have your metadata in a nice flatfile with one line per taxa, right?  I did this with a little &lt;a href=&quot;https://gist.github.com/2929366&quot;&gt;R script&lt;/a&gt; using the rather wonderful readHTMLtable() function in the XML (install.packages(&amp;#39;XML&amp;#39;)) package. &lt;/p&gt;
+
+&lt;p&gt;The output is a semicolon separated file with taxa in the rows and the different categories of metadata in columns. The metadata is often fairly incomplete, and  there are plenty of omissions, but hopefully it will become more useful as more deposits are made to GOLD.&lt;/p&gt;
+
+&lt;p&gt;** Wu D., Hugenholtz P., Mavromatis K., Pukall R., Dalin E., Ivanova N.N., Kunin V., Goodwin L., Wu M., Tindall B.J., Hooper S.D., Pati A., Lykidis A., Spring S., Anderson I.J., D’haeseleer P., Zemla A., Singer M., Lapidus A., Nolan M., Copeland A., Chen F., Cheng J., Lucas S., Kerfeld C., Lang E., Gronow S., Chain P., Bruce D., Rubin E.M., Kyrpides N.C., Klenk H., &amp;amp; Eisen J.A. 2009. A phylogeny-driven genomic encyclopaedia of Bacteria and Archaea. Nature, 462(7276): 1056-1060.&lt;/p&gt;
+</description></item>
+  </channel>
+</rss>
