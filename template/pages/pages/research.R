@@ -1,7 +1,7 @@
-layout <- "default.R"
+layout <- "default_nocomments.R"
 title <- "research"
 
-research_text <- markdownToHTML(file.path(site, "template/markdown/research_text.md"), fragment.only= TRUE)
+research_text <- include.markdown(file.path(site, "template/resources/markdown/research_text.md"))
 
 
 page <- content(m("h1", "My research"),

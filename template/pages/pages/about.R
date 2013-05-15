@@ -1,8 +1,8 @@
-layout <- "default.R"
+layout <- "default_nocomments.R"
 title <- "home"
 
-about.me <- markdownToHTML(file.path(site, "template/markdown/about_text.md"), fragment.only= TRUE)
-about.the.blog <- markdownToHTML(file.path(site, "template/markdown/about_blog.md"), fragment.only= TRUE)
+about.me <- include.markdown(file.path(site, "template/resources/markdown/about_text.md"))
+about.the.blog <- include.markdown(file.path(site, "template/resources/markdown/about_blog.md"))
 
 page <- content(
     m("h1", "About me"),
