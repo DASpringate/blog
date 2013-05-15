@@ -1,9 +1,9 @@
 
 (function(page){
     links <- list(c("/index.html", "Home"),
-                  c("/pages/about.html", "About"),
-                  c("/pages/research.html", "Research"),
-                  c("/pages/papers.html", "Papers"),
+                  c("/about.html", "About"),
+                  c("/research.html", "Research"),
+                  c("/papers.html", "Papers"),
                   c("https://github.com/DASpringate", "Github"))
     webdoc("html5",
            html_head(title = "David Springate's blog",
