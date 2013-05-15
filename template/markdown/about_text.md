@@ -1,6 +1,0 @@
-I am a biostatistician and informatician in the [Primary Care Research Group](http://www.medicine.manchester.ac.uk/primarycare/) at the University of Manchester.  In 2012 I completed a PhD in evolutionary biology, studying plastic and genetic responses to environmental changes. My previous work has covered a range of topics including evolutionary genetics, artificial life, machine learning, computational biology and bioinformatics.
-
-I have been programming seriously since 2008 and am proficient in R and Python and am becoming so with Clojure, which is rapidly becoming my favourite language of all. I also have some experience with Common Lisp, Scheme, Haskell, Processing, bash scripting, SQL and Stata programming. I have skills and experience in acquiring, processing, modelling and visualising large and complicated datasets.
-
-I am a dad of two girls, an avid reader, connoisseur of lo-fi indie pop and very occasional flamenco guitarist.
-You can contact me on [twitter](http://twitter.com/datajujitsu) or by email at daspringate `in or near the location of`  gmail  `a very small circular shape` com 
