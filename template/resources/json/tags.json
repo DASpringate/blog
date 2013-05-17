@@ -1,7 +1,7 @@
 {
  "R": {
- "titles": [ "Two R tutorials for beginners", "Scraping organism metadata for Treebase repositories from GOLD using Python and R" ],
-"urls": [ "posts/2013/04/beginners_tutorials.html", "posts/2013/04/scraping_metadata.html" ] 
+ "titles": [ "Two R tutorials for beginners", "Scraping organism metadata for Treebase repositories from GOLD using Python and R", "Functional programming in R" ],
+"urls": [ "posts/2013/04/beginners_tutorials.html", "posts/2013/04/scraping_metadata.html", "posts/2013/05/Functional_programming_in_R.html" ] 
 },
 "tutorials": {
  "titles": "Two R tutorials for beginners",
@@ -22,5 +22,17 @@
 "Bioinformatics": {
  "titles": "Scraping organism metadata for Treebase repositories from GOLD using Python and R",
 "urls": "posts/2013/04/scraping_metadata.html" 
+},
+"functional-programming": {
+ "titles": "Functional programming in R",
+"urls": "posts/2013/05/Functional_programming_in_R.html" 
+},
+"Lisp": {
+ "titles": "Functional programming in R",
+"urls": "posts/2013/05/Functional_programming_in_R.html" 
+},
+"Closures": {
+ "titles": "Functional programming in R",
+"urls": "posts/2013/05/Functional_programming_in_R.html" 
 } 
 }
