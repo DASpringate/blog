@@ -8,6 +8,96 @@
     <category>data</category>
     <category>informatics</category>
     <category>biostatistics</category>
+    <item><title>Mapping academic collaborations in Evolutionary Biology</title><link>http://daspringate.github.io/posts/2013/05/Evolutionary_biology_social_network.html</link><category>Python</category><category>R</category><category>Visualisations</category><description>&lt;h1&gt;Mapping academic collaborations in Evolutionary Biology&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;This post is a repubication of a visualisation I did in 2011 for my (now defunct) datajujitsu.co.uk blog.  It was a naive first attempt at web-scraping from an academic publishers website.  It was done before I was aware of the problems surrounding access to, and text-mining of, online academic content hosted by publishers such as Wiley and Elsevier. Producing such a piece now (in 2013) would certainly be regarded as a political act. The text and visualisations are unchanged from the original&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Like many people, I was immensely impressed with Paul Butler&amp;#39;s &lt;a href=&quot;http://paulbutler.org/archives/visualizing-facebook-friends/&quot;&gt;global map of facebook friend connections&lt;/a&gt;, a spectacular way of visualising, and humanising, a large amount of raw data.
+I was further impressed to find out that he did it solely using R. I recently found Flowingdata&amp;#39;s &lt;a href=&quot;http://flowingdata.com/2011/05/11/how-to-map-connections-with-great-circles/&quot;&gt;tutorial&lt;/a&gt; on creating the same effect using flight information and got to thinking about what other datasets I could apply it to.
+My original plan was to build a scraper to get all of the abstracts from a particular subject from &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/&quot;&gt;Pubmed&lt;/a&gt; and visualise the academic collaborations between institutions for all of these abstracts. Unfortunately though, Pubmed only stores the addresses of the institutions of the corresponding author, so I decided to stick with my own subject, evolutionary biology, and get all the abstacts from the journals &lt;a href=&quot;http://onlinelibrary.wiley.com/journal/10.1111/(ISSN&quot;&gt;Evolution&lt;/a&gt;1558-5646) and &lt;a href=&quot;http://onlinelibrary.wiley.com/journal/10.1111/(ISSN&quot;&gt;Evolutionary Biology&lt;/a&gt;1420-9101) since 2009. I could then extract these using a hacked together Python script which would then feed the addresses into the &lt;a href=&quot;http://developer.yahoo.com/geo/placefinder/&quot;&gt;Yahoo PlaceFinder&lt;/a&gt; api to get a data set of coordinates for each cross-institution collaboration in every paper published in the journals for the last two and a half years.
+I then fed this data into R, generated great circles for each of the collaborations using the geosphere package and processed it a la FlowingData to get the following global map of academic collaboration in evolutionary biology since 2009:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://daspringate.github.io/img/evolution_social_network.png&quot; alt=&quot;Evolution social network 2009-2011&quot;/&gt;&lt;/p&gt;
+
+&lt;p&gt;You can clearly see the main hubs of collaboration in Europe and the East and West coasts of the USA, with smaller hubs in Japan and South-Eastern Australia. There are further actively collaborating institutions in South America and Africa, but almost all of their collaborations are with North american and European Universities. Looking into the data itself, the median longitude for JEB institutions is firmly in Europe, while the median longitude for Evolution in the USA (This makes sense since Evolution is based in the states while JEB is a European journal, though there is no geographic imperative to publish in either).
+Technical info:
+I scraped the data from the Wiley website for the two journals using Python and BeautifulSoup. For the R analysis I used the modules maps, geosphere, reshape and gdata.&lt;/p&gt;
+</description></item>
+    <item><title>Develop in RStudio, run in RScript</title><link>http://daspringate.github.io/posts/2013/05/RStudio_server_tips.html</link><category>R</category><category>RStudio</category><category>Multicore</category><description>&lt;h1&gt;Develop in RStudio, run in RScript&lt;/h1&gt;
+
+&lt;p&gt;I have been using RStudio Server for a few months now and am finding it a great tool for R development.  The web interface is superb and behaves in almost exactly the same way as the desktop version.  However, I do have one gripe which has forced me to change my working practices slightly - It is really difficult to crash out of a frozen process.  Whereas in Console R, I could just hit Control-D to get out and back to Bash, in RStudio, while you can use the escape key to terminate an operation, if you have a big process going on everything just freezes and you can&amp;#39;t do anything.  One way to deal with this is to kill the rstudio process in another terminal, but this kills the whole session, including the editor, and you will lose anything you haven&amp;#39;t saved in your scripts.  This problem is exacerbated when I am trying to use run parallel processes using the &lt;code&gt;Multicore&lt;/code&gt; package, because it takes an age to kill all of the extra forks first.&lt;/p&gt;
+
+&lt;p&gt;So, now I use RStudio for development and testing and run my final analysis scripts directly using Rscript.  I have this line of code at the start of my scripts&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;r&quot;&gt;require(multicore)
+cat(sprintf(&amp;quot;Multicore functions running on maximum %d cores&amp;quot;,
+            ifelse(length(commandArgs(trailingOnly=TRUE)), 
+                   cores &amp;lt;- commandArgs(trailingOnly=TRUE)[1],
+                   cores &amp;lt;- 1)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## Multicore functions running on maximum 1 cores
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;hellip; so when I am testing in Rstudio, cores is set to 1, but when I run as an Rscript, I can specify how many cores I want to use.  I then just add &lt;code&gt;mc.cores = cores&lt;/code&gt; to all of my &lt;code&gt;mclapply&lt;/code&gt; calls like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;r&quot;&gt;# Example processor hungry multicore operation
+mats &amp;lt;- mclapply(1:500, 
+                 function(x) matrix(rnorm(x*x), 
+                                    ncol = x) %*% matrix(rnorm(x*x), 
+                                                         ncol = x), 
+                 mc.cores = cores)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The advantage of this is that, when mc.cores are set to 1, mclapply just calls lapply which is easier to crash out of (try running the above code with cores set to more than 1 to see what I mean. It will hang for a lot longer) and produces more useful error messages:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;r&quot;&gt;# Error handling with typos:
+# mcapply:
+mats &amp;lt;- mclapply(1:500, 
+                 function(x) matrix(rnor(x*x), 
+                                    ncol = x) %*% matrix(rnorm(x*x), 
+                                                         ncol = x), 
+                 mc.cores = 2)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## Warning: all scheduled cores encountered errors in user code
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&quot;r&quot;&gt;# Falls back to lapply with 1 core:
+mats &amp;lt;- mclapply(1:500, 
+                 function(x) matrix(rnor(x*x), 
+                                    ncol = x) %*% matrix(rnorm(x*x), 
+                                                         ncol = x), 
+                 mc.cores = 1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## Error: could not find function &amp;quot;rnor&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Running final analysis scripts has these advantages:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You can much more easily crash out of them if there is a problem.&lt;br/&gt;&lt;/li&gt;
+&lt;li&gt;You can run several scripts in parallel without taking up console space&lt;/li&gt;
+&lt;li&gt;You can easily redirect the std error and std out from your program to a log file to keep an eye on its progress&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Running multicore R scripts in the background with automatic logging&lt;/h2&gt;
+
+&lt;p&gt;If you have a bunch of R scripts that might each take hours to run, you don&amp;#39;t want to clog up your RStudio console with them. This is a useful command to effectively run a big R analysis script in the background via Rscript.  It should work equally well for Linux and Mac:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ Rscript --vanilla R/myscript.R 12 &amp;amp;&amp;gt; logs/myscript.log &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;Rscript&lt;/code&gt; runs the .R file as a standalone script, without going into the R environment.  The &amp;ndash;vanilla flag means that you run the script without calling in your .Rprofile (which is typically set up for interactive use) and without prompting you to save a workspace image. I always run the Rscript from the save level to that which is set as the project root for Rstudio to avoid any problems because of relative paths being set up wrongly. The number after the .R file to be run is the number of cores you want to run the parallel stuff on.  Other arguments you may want to pass to R would also go here. the &lt;code&gt;&amp;amp;&amp;gt;&lt;/code&gt; operator redirects both the stdin and stderror to the file logs/myscript.log (I always set up a logs directory in my R projects for this purpose). The &lt;code&gt;&amp;amp;&lt;/code&gt; at the end runs the process in the background, so you get your bash prompt back while it is running.  Then if you want to check the progress of your script, just type:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ tail -f logs/myscript.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And you can watch the output of your script in real time. Hit Control-C to get back to your command prompt.  You can also use the &lt;code&gt;top&lt;/code&gt; command to keep an eye on your processor usage.&lt;/p&gt;
+
+&lt;p&gt;If you want to kill your script, either find the PID number associated with your process in &lt;code&gt;top&lt;/code&gt; and do &lt;code&gt;kill PIDNUMBER&lt;/code&gt; or, if you are lazy/carefree, type &lt;code&gt;killall R&lt;/code&gt; to kill any running R processes.  This will not affect your rstudio instance.&lt;/p&gt;
+</description></item>
     <item><title>Functional programming in R</title><link>http://daspringate.github.io/posts/2013/05/Functional_programming_in_R.html</link><category>R</category><category>functional-programming</category><category>Lisp</category><category>Closures</category><description>&lt;h1&gt;Functional programming in R&lt;/h1&gt;
 
 &lt;p&gt;&lt;em&gt;This post is based on a talk I gave at the &lt;a href=&quot;http://www.meetup.com/Manchester-R/&quot;&gt;Manchester R User Group&lt;/a&gt; on functional programming in R on May 2nd 2013.  The original slides can be found &lt;a href=&quot;http://www.slideshare.net/DASpringate/functional-programming-in-r&quot;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
@@ -212,9 +302,9 @@ apply(bstrap, MARGIN=1, FUN=quantile,
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;##       (Intercept) Petal.Length
-## 2.5%        4.157       0.3689
-## 50%         4.309       0.4083
-## 97.5%       4.459       0.4444
+## 2.5%        4.155       0.3703
+## 50%         4.311       0.4083
+## 97.5%       4.458       0.4485
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This is an elegant way to solve a common analysis problem in R.  If you are running a large model and you want to speed things up (and you have a few cores free!), it is a simple task and a couple of lines of code to replace the call to &lt;code&gt;sapply&lt;/code&gt; to one to &lt;code&gt;multicore::mclapply&lt;/code&gt; and run the model on as many processor cores as you can.&lt;/p&gt;
@@ -248,9 +338,9 @@ cbind( &amp;quot;(Intercept)&amp;quot;=quantile(bstrap2[,1],probs = CIs),
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;##       (Intercept) Petal.Length
-## 2.5%        4.153       0.3708
-## 50%         4.304       0.4094
-## 97.5%       4.445       0.4480
+## 2.5%        4.161       0.3679
+## 50%         4.300       0.4106
+## 97.5%       4.450       0.4485
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The code duplication in the &lt;code&gt;cbind&lt;/code&gt; is a pain, as is having to name the coefficients directly.  Both of these reduce the generalisability of the algorithm.&lt;/p&gt;

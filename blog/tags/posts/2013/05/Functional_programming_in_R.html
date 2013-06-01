@@ -7,7 +7,7 @@
   ga('create', 'UA-40926137-1', 'github.com');
   ga('send', 'pageview');
 
-</script><div class="container-fluid well"><h1>What is this?</h1><p>David Springate's blog on programming, data, informatics and biostatistics</p></div><div class="subnav"><ul class="nav nav-pills"><li><a href="/index.html">Home</a></li><li><a href="/pages/about.html">About</a></li><li><a href="/pages/research.html">Research</a></li><li><a href="/pages/papers.html">Papers</a></li><li><a href="https://github.com/DASpringate">Github</a></li></ul></div><link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="/css/smartphone.css" media="only screen and (max-device-width:480px)" rel="stylesheet" type="text/css"></head><body><div class="container-fluid"><div class="row-fluid"><div class="span1"></div><div class="span9"><h1>Functional programming in R</h1>
+</script><div class="container-fluid well"><h1>What is this?</h1><p>David Springate's blog on programming, data, informatics and biostatistics </p></div><div class="subnav"><ul class="nav nav-pills"><li><a href="/index.html">Home</a></li><li><a href="/pages/about.html">About</a></li><li><a href="/pages/research.html">Research</a></li><li><a href="/pages/papers.html">Papers</a></li><li><a href="https://github.com/DASpringate">Github</a></li></ul></div><link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="/css/smartphone.css" media="only screen and (max-device-width:480px)" rel="stylesheet" type="text/css"></head><body><div class="container-fluid"><div class="row-fluid"><div class="span1"></div><div class="span9"><h1>Functional programming in R</h1>
 
 <p><em>This post is based on a talk I gave at the <a href="http://www.meetup.com/Manchester-R/">Manchester R User Group</a> on functional programming in R on May 2nd 2013.  The original slides can be found <a href="http://www.slideshare.net/DASpringate/functional-programming-in-r">here</a></em></p>
 
@@ -211,9 +211,9 @@ apply(bstrap, MARGIN=1, FUN=quantile,
 </code></pre>
 
 <pre><code>##       (Intercept) Petal.Length
-## 2.5%        4.157       0.3696
-## 50%         4.310       0.4083
-## 97.5%       4.464       0.4461
+## 2.5%        4.146       0.3699
+## 50%         4.302       0.4098
+## 97.5%       4.445       0.4475
 </code></pre>
 
 <p>This is an elegant way to solve a common analysis problem in R.  If you are running a large model and you want to speed things up (and you have a few cores free!), it is a simple task and a couple of lines of code to replace the call to <code>sapply</code> to one to <code>multicore::mclapply</code> and run the model on as many processor cores as you can.</p>
@@ -247,9 +247,9 @@ cbind( &quot;(Intercept)&quot;=quantile(bstrap2[,1],probs = CIs),
 </code></pre>
 
 <pre><code>##       (Intercept) Petal.Length
-## 2.5%        4.157       0.3708
-## 50%         4.306       0.4088
-## 97.5%       4.453       0.4457
+## 2.5%        4.166       0.3693
+## 50%         4.308       0.4094
+## 97.5%       4.459       0.4438
 </code></pre>
 
 <p>The code duplication in the <code>cbind</code> is a pain, as is having to name the coefficients directly.  Both of these reduce the generalisability of the algorithm.</p>
@@ -292,4 +292,5 @@ cbind( &quot;(Intercept)&quot;=quantile(bstrap2[,1],probs = CIs),
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     
-</div><div class="span2"><h3>Tags</h3><ul><li><a href="/tags/R.html">R (3)</a></li><li><a href="/tags/tutorials.html">tutorials (1)</a></li><li><a href="/tags/subsetting.html">subsetting (1)</a></li><li><a href="/tags/vectorisation.html">vectorisation (1)</a></li><li><a href="/tags/Python.html">Python (1)</a></li><li><a href="/tags/Bioinformatics.html">Bioinformatics (1)</a></li><li><a href="/tags/functional-programming.html">functional-programming (1)</a></li><li><a href="/tags/Lisp.html">Lisp (1)</a></li><li><a href="/tags/Closures.html">Closures (1)</a></li></ul></div></div><div class="span12"><div class="span2"></div><div class="span8"><footer class="footer"><p class="right back_to_top"><a href="#">&uArr; Page Top</a></p><p><a href="http://twitter.com/datajujitsu">@datajujitsu</a>&nbsp; 2013</p></footer></div></div></div></body></html>
+</div><div class="span2"><a href="http://feeds.feedburner.com/DavidSpringatesBlog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml"><img src="//feedburner.google.com/fb/images/pub/feed-icon32x32.png" alt="" style="border:0"/></a><a href="http://feeds.feedburner.com/DavidSpringatesBlog" title="Subscribe" rel="alternate" type="application/rss+xml">Subscribe </a>
+<h3>Tags</h3><ul><li><a href="/tags/R.html">R (3)</a></li><li><a href="/tags/tutorials.html">tutorials (1)</a></li><li><a href="/tags/subsetting.html">subsetting (1)</a></li><li><a href="/tags/vectorisation.html">vectorisation (1)</a></li><li><a href="/tags/Python.html">Python (1)</a></li><li><a href="/tags/Bioinformatics.html">Bioinformatics (1)</a></li><li><a href="/tags/functional-programming.html">functional-programming (1)</a></li><li><a href="/tags/Lisp.html">Lisp (1)</a></li><li><a href="/tags/Closures.html">Closures (1)</a></li></ul><h3>Blogs</h3><ul><li><a href="http://www.r-bloggers.com/">R bloggers</a></li><li><a href="http://planet.clojure.in/">Planet Clojure</a></li><li><a href="http://planetbigdata.com/">Planet Big Data</a></li><li><a href="http://www.statsblogs.com/">Statsblogs</a></li></ul></div></div><div class="span12"><div class="span2"></div><div class="span8"><footer class="footer"><p class="right back_to_top"><a href="#">&uArr; Page Top</a></p><p><a href="http://twitter.com/datajujitsu">@datajujitsu</a>&nbsp; 2013</p></footer></div></div></div></body></html>

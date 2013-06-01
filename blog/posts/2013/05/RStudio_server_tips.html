@@ -1,0 +1,100 @@
+<!DOCTYPE html><html><head title="David Springate's blog"><meta charset="utf-8"><meta content="width=device-width, initiali-scale=1.0, user-scalable=yes" name="viewport"><a rel="alternate" title="David Springate's blog RSS feed" type="application/rss+xml" href="/rss.xml"></a><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40926137-1', 'github.com');
+  ga('send', 'pageview');
+
+</script><div class="container-fluid well"><h1>What is this?</h1><p>David Springate's blog on programming, data, informatics and biostatistics </p></div><div class="subnav"><ul class="nav nav-pills"><li><a href="/index.html">Home</a></li><li><a href="/pages/about.html">About</a></li><li><a href="/pages/research.html">Research</a></li><li><a href="/pages/papers.html">Papers</a></li><li><a href="https://github.com/DASpringate">Github</a></li></ul></div><link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="/css/smartphone.css" media="only screen and (max-device-width:480px)" rel="stylesheet" type="text/css"></head><body><div class="container-fluid"><div class="row-fluid"><div class="span1"></div><div class="span9"><h1>Develop in RStudio, run in RScript</h1>
+
+<p>I have been using RStudio Server for a few months now and am finding it a great tool for R development.  The web interface is superb and behaves in almost exactly the same way as the desktop version.  However, I do have one gripe which has forced me to change my working practices slightly - It is really difficult to crash out of a frozen process.  Whereas in Console R, I could just hit Control-D to get out and back to Bash, in RStudio, while you can use the escape key to terminate an operation, if you have a big process going on everything just freezes and you can&#39;t do anything.  One way to deal with this is to kill the rstudio process in another terminal, but this kills the whole session, including the editor, and you will lose anything you haven&#39;t saved in your scripts.  This problem is exacerbated when I am trying to use run parallel processes using the <code>Multicore</code> package, because it takes an age to kill all of the extra forks first.</p>
+
+<p>So, now I use RStudio for development and testing and run my final analysis scripts directly using Rscript.  I have this line of code at the start of my scripts&hellip;</p>
+
+<pre><code class="r">require(multicore)
+cat(sprintf(&quot;Multicore functions running on maximum %d cores&quot;,
+            ifelse(length(commandArgs(trailingOnly=TRUE)), 
+                   cores &lt;- commandArgs(trailingOnly=TRUE)[1],
+                   cores &lt;- 1)))
+</code></pre>
+
+<pre><code>## Multicore functions running on maximum 1 cores
+</code></pre>
+
+<p>&hellip; so when I am testing in Rstudio, cores is set to 1, but when I run as an Rscript, I can specify how many cores I want to use.  I then just add <code>mc.cores = cores</code> to all of my <code>mclapply</code> calls like this:</p>
+
+<pre><code class="r"># Example processor hungry multicore operation
+mats &lt;- mclapply(1:500, 
+                 function(x) matrix(rnorm(x*x), 
+                                    ncol = x) %*% matrix(rnorm(x*x), 
+                                                         ncol = x), 
+                 mc.cores = cores)
+</code></pre>
+
+<p>The advantage of this is that, when mc.cores are set to 1, mclapply just calls lapply which is easier to crash out of (try running the above code with cores set to more than 1 to see what I mean. It will hang for a lot longer) and produces more useful error messages:</p>
+
+<pre><code class="r"># Error handling with typos:
+# mcapply:
+mats &lt;- mclapply(1:500, 
+                 function(x) matrix(rnor(x*x), 
+                                    ncol = x) %*% matrix(rnorm(x*x), 
+                                                         ncol = x), 
+                 mc.cores = 2)
+</code></pre>
+
+<pre><code>## Warning: all scheduled cores encountered errors in user code
+</code></pre>
+
+<pre><code class="r"># Falls back to lapply with 1 core:
+mats &lt;- mclapply(1:500, 
+                 function(x) matrix(rnor(x*x), 
+                                    ncol = x) %*% matrix(rnorm(x*x), 
+                                                         ncol = x), 
+                 mc.cores = 1)
+</code></pre>
+
+<pre><code>## Error: could not find function &quot;rnor&quot;
+</code></pre>
+
+<p>Running final analysis scripts has these advantages:</p>
+
+<ul>
+<li>You can much more easily crash out of them if there is a problem.<br/></li>
+<li>You can run several scripts in parallel without taking up console space</li>
+<li>You can easily redirect the std error and std out from your program to a log file to keep an eye on its progress</li>
+</ul>
+
+<h2>Running multicore R scripts in the background with automatic logging</h2>
+
+<p>If you have a bunch of R scripts that might each take hours to run, you don&#39;t want to clog up your RStudio console with them. This is a useful command to effectively run a big R analysis script in the background via Rscript.  It should work equally well for Linux and Mac:</p>
+
+<pre><code>$ Rscript --vanilla R/myscript.R 12 &amp;&gt; logs/myscript.log &amp;
+</code></pre>
+
+<p><code>Rscript</code> runs the .R file as a standalone script, without going into the R environment.  The &ndash;vanilla flag means that you run the script without calling in your .Rprofile (which is typically set up for interactive use) and without prompting you to save a workspace image. I always run the Rscript from the save level to that which is set as the project root for Rstudio to avoid any problems because of relative paths being set up wrongly. The number after the .R file to be run is the number of cores you want to run the parallel stuff on.  Other arguments you may want to pass to R would also go here. the <code>&amp;&gt;</code> operator redirects both the stdin and stderror to the file logs/myscript.log (I always set up a logs directory in my R projects for this purpose). The <code>&amp;</code> at the end runs the process in the background, so you get your bash prompt back while it is running.  Then if you want to check the progress of your script, just type:</p>
+
+<pre><code>$ tail -f logs/myscript.log
+</code></pre>
+
+<p>And you can watch the output of your script in real time. Hit Control-C to get back to your command prompt.  You can also use the <code>top</code> command to keep an eye on your processor usage.</p>
+
+<p>If you want to kill your script, either find the PID number associated with your process in <code>top</code> and do <code>kill PIDNUMBER</code> or, if you are lazy/carefree, type <code>killall R</code> to kill any running R processes.  This will not affect your rstudio instance.</p>
+<h6>Posted on 2013-05-24</h6><div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'daspringate'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+</div><div class="span2"><a href="http://feeds.feedburner.com/DavidSpringatesBlog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml"><img src="//feedburner.google.com/fb/images/pub/feed-icon32x32.png" alt="" style="border:0"/></a><a href="http://feeds.feedburner.com/DavidSpringatesBlog" title="Subscribe" rel="alternate" type="application/rss+xml">Subscribe </a>
+<h3>Tags</h3><ul><li><a href="/tags/R.html">R (5)</a></li><li><a href="/tags/tutorials.html">tutorials (1)</a></li><li><a href="/tags/subsetting.html">subsetting (1)</a></li><li><a href="/tags/vectorisation.html">vectorisation (1)</a></li><li><a href="/tags/Python.html">Python (2)</a></li><li><a href="/tags/Bioinformatics.html">Bioinformatics (1)</a></li><li><a href="/tags/functional-programming.html">functional-programming (1)</a></li><li><a href="/tags/Lisp.html">Lisp (1)</a></li><li><a href="/tags/Closures.html">Closures (1)</a></li><li><a href="/tags/RStudio.html">RStudio (1)</a></li><li><a href="/tags/Multicore.html">Multicore (1)</a></li><li><a href="/tags/Visualisations.html">Visualisations (1)</a></li></ul><h3>Blogs</h3><ul><li><a href="http://www.r-bloggers.com/">R bloggers</a></li><li><a href="http://planet.clojure.in/">Planet Clojure</a></li><li><a href="http://planetbigdata.com/">Planet Big Data</a></li><li><a href="http://www.statsblogs.com/">Statsblogs</a></li></ul></div></div><div class="span12"><div class="span2"></div><div class="span8"><footer class="footer"><p class="right back_to_top"><a href="#">&uArr; Page Top</a></p><p><a href="http://twitter.com/datajujitsu">@datajujitsu</a>&nbsp; 2013 <a href="https://github.com/DASpringate/samatha">Built in R with Samatha</a></p></footer></div></div></div></body></html>

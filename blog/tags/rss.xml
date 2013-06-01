@@ -8,40 +8,7 @@
     <category>data</category>
     <category>informatics</category>
     <category>biostatistics</category>
-    <item><title>Two R tutorials for beginners</title><link>/posts/2013/04/beginners_tutorials.html</link><category>R</category><category>tutorials</category><category>subsetting</category><category>vectorisation</category><description>&lt;h1&gt;Two R tutorials for beginners&lt;/h1&gt;
-
-&lt;p&gt;I am currently in the process of rescuing some of the pages from my now defunct datajujitsu.co.uk blogger blog and moving to this Github/Clojure/Bootstrap version.  I also today gave a tutorial to the University of Manchester on data cleaning and subsetting, so I am killing two birds with one stone by linking to the &lt;a href=&quot;http://rpubs.com/&quot;&gt;Rpubs&lt;/a&gt; pages for both this and a short tutorial I gave last year on vectorisation.&lt;/p&gt;
-
-&lt;p&gt;The tutorials are:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;http://rpubs.com/daspringate/subsetting&quot;&gt;Subsetting in R: Spring cleaning your data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://rpubs.com/daspringate/vectorisation&quot;&gt;Speeding up your R code - vectorisation tricks for beginners&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The R markdown source file for both of these are available on &lt;a href=&quot;https://github.com/DASpringate/tutorials&quot;&gt;my github page&lt;/a&gt;. Rpubs is a great site from the people behind RStudio that allows you to upload R markdown scripts compiled using Knitr in no time at all.  &lt;/p&gt;
-
-&lt;p&gt;Using R Markdown, Knitr, RStudio and Rpubs to produce and publish tutorials has proved a complete joy.  It is simple, quick and painless to get pages online with embedded R code and output.  &lt;/p&gt;
-
-&lt;p&gt;I have also produced a slide presentation for an internal seminar series in my department using R Markdown, Knitr, Pandoc and Beamer. I was really pleased with the results (Which are also on my &lt;a href=&quot;https://github.com/DASpringate/tutorials/tree/master/Primary_Care_Databases/March_2013&quot;&gt;github page&lt;/a&gt;) and how easily I was able to achieve them, particularly with  the huge reduction of Latex boilerplate I was forced to write.  I will be doing all of my presentations with this method in future and will blog about the workflow for doing so in due course.&lt;/p&gt;
-</description></item>
-    <item><title>Scraping organism metadata for Treebase repositories from GOLD using Python and R</title><link>/posts/2013/04/scraping_metadata.html</link><category>R</category><category>Python</category><category>Bioinformatics</category><description>&lt;h1&gt;Scraping organism metadata for Treebase repositories from GOLD using Python and R&lt;/h1&gt;
-
-&lt;p&gt;I recently wanted to get hold of habitat/phenotype/sequencing metadata for the individual organisms of  an archived &lt;a href=&quot;http://treebase.org/treebase-web/home.html&quot;&gt;Treebase&lt;/a&gt; project.)&lt;/p&gt;
-
-&lt;p&gt;The &lt;a href=&quot;http://www.genomesonline.org/&quot;&gt;GOLD&lt;/a&gt; database holds  more than 18000 full genomes.  For many of these it provides pretty good metadata (&lt;a href=&quot;http://genomesonline.org/cgi-bin/GOLD/bin/GOLDCards.cgi?goldstamp=Gc00536&quot;&gt;GOLDcards&lt;/a&gt;) which are indirectly linked  to Treebase via &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/taxonomy&quot;&gt;NCBI&lt;/a&gt; taxa &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;amp;amp;id=122368&quot;&gt;IDs&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Unfortunately GOLD does not seem to have any kind of API for systematic downloads, so I hacked together a very &lt;a href=&quot;https://gist.github.com/2929217&quot;&gt;quick-and-dirty scraper&lt;/a&gt; in Python that reads in taxa from a Treebase repo, follows the links to each species NCBI page and downloads the linked GOLDcard, if it exists.&lt;/p&gt;
-
-&lt;p&gt;Here is the code. You will need the external BeautifulSoup and lxml libraries for this to work - both are fantastic. (The Treebase repo here is from Wu et al. 2009**, just change the url string for a different repo&amp;hellip;):&lt;/p&gt;
-
-&lt;p&gt;Once you have downloaded all of the available files, It would be great to have your metadata in a nice flatfile with one line per taxa, right?  I did this with a little &lt;a href=&quot;https://gist.github.com/2929366&quot;&gt;R script&lt;/a&gt; using the rather wonderful readHTMLtable() function in the XML (install.packages(&amp;#39;XML&amp;#39;)) package. &lt;/p&gt;
-
-&lt;p&gt;The output is a semicolon separated file with taxa in the rows and the different categories of metadata in columns. The metadata is often fairly incomplete, and  there are plenty of omissions, but hopefully it will become more useful as more deposits are made to GOLD.&lt;/p&gt;
-
-&lt;p&gt;** Wu D., Hugenholtz P., Mavromatis K., Pukall R., Dalin E., Ivanova N.N., Kunin V., Goodwin L., Wu M., Tindall B.J., Hooper S.D., Pati A., Lykidis A., Spring S., Anderson I.J., D’haeseleer P., Zemla A., Singer M., Lapidus A., Nolan M., Copeland A., Chen F., Cheng J., Lucas S., Kerfeld C., Lang E., Gronow S., Chain P., Bruce D., Rubin E.M., Kyrpides N.C., Klenk H., &amp;amp; Eisen J.A. 2009. A phylogeny-driven genomic encyclopaedia of Bacteria and Archaea. Nature, 462(7276): 1056-1060.&lt;/p&gt;
-</description></item>
-    <item><title>Functional programming in R</title><link>/posts/2013/05/Functional_programming_in_R.html</link><category>R</category><category>functional-programming</category><category>Lisp</category><category>Closures</category><description>&lt;h1&gt;Functional programming in R&lt;/h1&gt;
+    <item><title>Functional programming in R</title><link>http://daspringate.github.io/posts/2013/05/Functional_programming_in_R.html</link><category>R</category><category>functional-programming</category><category>Lisp</category><category>Closures</category><description>&lt;h1&gt;Functional programming in R&lt;/h1&gt;
 
 &lt;p&gt;&lt;em&gt;This post is based on a talk I gave at the &lt;a href=&quot;http://www.meetup.com/Manchester-R/&quot;&gt;Manchester R User Group&lt;/a&gt; on functional programming in R on May 2nd 2013.  The original slides can be found &lt;a href=&quot;http://www.slideshare.net/DASpringate/functional-programming-in-r&quot;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 
@@ -54,13 +21,13 @@ I will discuss what functional programming is at a very abstract level as a mean
 
 &lt;p&gt;Consider for a moment building a representation of a river on a computer, a model of a river system for example.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/img/river.jpg&quot; alt=&quot;alt River&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://daspringate.github.io/img/river.jpg&quot; alt=&quot;alt River&quot;/&gt;&lt;/p&gt;
 
 &lt;p&gt;In non-functional languages such as C++, Java and (to some extent) Python, the river is an object in itself, a &lt;code&gt;thing&lt;/code&gt; that does &lt;code&gt;things&lt;/code&gt; to other &lt;code&gt;things&lt;/code&gt; and that may have various properties associated with it such as flow rate, depth and pollution levels.  These properties may change over time but there is always this constant, the river, which somehow persists over time.&lt;/p&gt;
 
 &lt;p&gt;In FP we look at things differently&amp;hellip; &lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/img/heraclitus.jpg&quot; alt=&quot;Hereclitus - We never step into the same river twice&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://daspringate.github.io/img/heraclitus.jpg&quot; alt=&quot;Hereclitus - We never step into the same river twice&quot;/&gt;&lt;/p&gt;
 
 &lt;p&gt;The presocratic philosopher  Hereclitus said “We never step into the same river twice”, recognising that the thing we call a river is not really an object in itself, but something undergoing constant change through a variety of processes. In functional programming we are less concerned with the object of the river itself but rather the processes that it undergoes through time.  Our river at any point in time is just a collection of values (say, particles and their positions). These values then feed into a process to generate the series of values at the next time point.  So we have data flowing through processes of functions and that collection of data over time is what we call a river, which is really defined by the functions that the data flows through.  This is a very different way of looking at things to that of imperative, object oriented programming.&lt;/p&gt;
 
@@ -115,7 +82,7 @@ powfun(2, 10)
 
 &lt;p&gt;R has a reputation for being an ugly, hacked together and slow language. I think this is slightly unfair, but in this ever-so-slightly biassed account, I am going to blame the parents:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/img/R_genealogy.png&quot; alt=&quot;R genealogy&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://daspringate.github.io/img/R_genealogy.png&quot; alt=&quot;R genealogy&quot;/&gt;&lt;/p&gt;
 
 &lt;p&gt;R is the offspring of the languages &lt;code&gt;S&lt;/code&gt; and &lt;code&gt;Scheme&lt;/code&gt;.  S is a statistical language invented in the 1970&amp;#39;s which is itself based on non-functional, imperative languages like C and Fortran.  It is useful in this domain and much of R&amp;#39;s statistical abilities stem from this, but it is certainly less than pretty.  Scheme is a concise, elegant, functional language in the lisp family. The designers of R tried to build something with the statistical functionality of S and the elegance of Scheme.  Unfortunately, they left in much of the inelegant stuff from S as well and this mixed parentage means that it is now perfectly possible to write ugly, hacky, slow code in the style of S, just as it is also possible to write elegant, efficient functional code in the style of scheme.  The problem is that functional programming has been far less mainstream so people tend to learn to code in the way they know first, resulting in rafts of ugly, hacky R code.  Programming R in an elegant, functional way is not more difficult, but is immediately less intuitive to people who were brought up reading and writing imperative code.  I would always recommend people learning R to learn these functional concepts from the outset because this way you are working with how the language was designed, rather than against it.&lt;/p&gt;
 
@@ -188,7 +155,7 @@ powfun(2, 10)
 
 &lt;p&gt;Because functions in R are first class citizens of the language, it is trivial to write and use functions that take other functions as arguments.  The most well used of these are the functions in the apply family (&lt;code&gt;lapply&lt;/code&gt;, &lt;code&gt;sapply&lt;/code&gt;, &lt;code&gt;apply&lt;/code&gt; etc.).  These cause a lot of headaches for new-ish R users, who have just got to grips with for loops, but they are really no more difficult to use.  When you use one of these apply functions, you are just taking a collection of data (say a list or vector) and applying the input function to every element of the collection in turn, and collecting the results in another collection.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/img/apply_functions.png&quot; alt=&quot;Apply functions&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://daspringate.github.io/img/apply_functions.png&quot; alt=&quot;Apply functions&quot;/&gt;&lt;/p&gt;
 
 &lt;p&gt;Because the mapping of each element to the function is independent of the elements around it, you can split the collections up and join them together at the end, which means that the functions can be better optimised than a &lt;code&gt;for&lt;/code&gt; loop (especially in the case of &lt;code&gt;lapply&lt;/code&gt;) and also easily run over multiple processor cores (see &lt;code&gt;multicore::mclapply&lt;/code&gt;).&lt;/p&gt;
 
@@ -207,7 +174,7 @@ powfun(2, 10)
 
 &lt;p&gt;Closures are at the heart of all functional programming languages.  Essentially a closure is a function to which has been added data via its arguments.  The function &amp;#39;closes over&amp;#39; the data at the time the function was created and it is possible to access it at a later time.  Compare this to the idea of an object in languages like C++ and Java, which are data with functions attached to them.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/img/closure.png&quot; alt=&quot;closures&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://daspringate.github.io/img/closure.png&quot; alt=&quot;closures&quot;/&gt;&lt;/p&gt;
 
 &lt;p&gt;You can use closures to build wrappers around functions with new default values and partially apply functions and even mimic Object-oriented style objects, but possibly most interestingly, you can build functions that return other functions.  This is great if you want to call a function many times on the same dataset but with different parameters, such as in maximum-likelihood optimisation problems when you are seeking to minimise some cost function and also for randomisation and bootstrapping algorithms.&lt;/p&gt;
 
@@ -245,9 +212,9 @@ apply(bstrap, MARGIN=1, FUN=quantile,
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;##       (Intercept) Petal.Length
-## 2.5%        4.157       0.3696
-## 50%         4.310       0.4083
-## 97.5%       4.464       0.4461
+## 2.5%        4.146       0.3699
+## 50%         4.302       0.4098
+## 97.5%       4.445       0.4475
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This is an elegant way to solve a common analysis problem in R.  If you are running a large model and you want to speed things up (and you have a few cores free!), it is a simple task and a couple of lines of code to replace the call to &lt;code&gt;sapply&lt;/code&gt; to one to &lt;code&gt;multicore::mclapply&lt;/code&gt; and run the model on as many processor cores as you can.&lt;/p&gt;
@@ -281,9 +248,9 @@ cbind( &amp;quot;(Intercept)&amp;quot;=quantile(bstrap2[,1],probs = CIs),
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;##       (Intercept) Petal.Length
-## 2.5%        4.157       0.3708
-## 50%         4.306       0.4088
-## 97.5%       4.453       0.4457
+## 2.5%        4.166       0.3693
+## 50%         4.308       0.4094
+## 97.5%       4.459       0.4438
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The code duplication in the &lt;code&gt;cbind&lt;/code&gt; is a pain, as is having to name the coefficients directly.  Both of these reduce the generalisability of the algorithm.&lt;/p&gt;
@@ -311,6 +278,39 @@ cbind( &amp;quot;(Intercept)&amp;quot;=quantile(bstrap2[,1],probs = CIs),
 &lt;li&gt;&lt;a href=&quot;www.burns-stat.com/pages/Tutor/R_inferno.pdf&quot;&gt;The R Inferno&lt;/a&gt; by Patrick Burns is a classic free online book on R and has a great chapter on vectorisation and when it is best to apply it.&lt;/li&gt;
 &lt;li&gt;If you are intersted in the metaphysical stuff at the start of this post, Rich Hickey, the inventor of the Clojure language give &lt;a href=&quot;http://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey&quot;&gt;this&lt;/a&gt; great talk on the importance of FP and the failings of the traditional OOP model.  The talk was also summarised nicely in &lt;a href=&quot;http://www.flyingmachinestudios.com/programming/the-unofficial-guide-to-rich-hickeys-brain/&quot;&gt;this&lt;/a&gt; blog post.&lt;/li&gt;
 &lt;/ul&gt;
+</description></item>
+    <item><title>Two R tutorials for beginners</title><link>http://daspringate.github.io/posts/2013/04/beginners_tutorials.html</link><category>R</category><category>tutorials</category><category>subsetting</category><category>vectorisation</category><description>&lt;h1&gt;Two R tutorials for beginners&lt;/h1&gt;
+
+&lt;p&gt;I am currently in the process of rescuing some of the pages from my now defunct datajujitsu.co.uk blogger blog and moving to this Github/Clojure/Bootstrap version.  I also today gave a tutorial to the University of Manchester on data cleaning and subsetting, so I am killing two birds with one stone by linking to the &lt;a href=&quot;http://rpubs.com/&quot;&gt;Rpubs&lt;/a&gt; pages for both this and a short tutorial I gave last year on vectorisation.&lt;/p&gt;
+
+&lt;p&gt;The tutorials are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://rpubs.com/daspringate/subsetting&quot;&gt;Subsetting in R: Spring cleaning your data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://rpubs.com/daspringate/vectorisation&quot;&gt;Speeding up your R code - vectorisation tricks for beginners&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The R markdown source file for both of these are available on &lt;a href=&quot;https://github.com/DASpringate/tutorials&quot;&gt;my github page&lt;/a&gt;. Rpubs is a great site from the people behind RStudio that allows you to upload R markdown scripts compiled using Knitr in no time at all.  &lt;/p&gt;
+
+&lt;p&gt;Using R Markdown, Knitr, RStudio and Rpubs to produce and publish tutorials has proved a complete joy.  It is simple, quick and painless to get pages online with embedded R code and output.  &lt;/p&gt;
+
+&lt;p&gt;I have also produced a slide presentation for an internal seminar series in my department using R Markdown, Knitr, Pandoc and Beamer. I was really pleased with the results (Which are also on my &lt;a href=&quot;https://github.com/DASpringate/tutorials/tree/master/Primary_Care_Databases/March_2013&quot;&gt;github page&lt;/a&gt;) and how easily I was able to achieve them, particularly with  the huge reduction of Latex boilerplate I was forced to write.  I will be doing all of my presentations with this method in future and will blog about the workflow for doing so in due course.&lt;/p&gt;
+</description></item>
+    <item><title>Scraping organism metadata for Treebase repositories from GOLD using Python and R</title><link>http://daspringate.github.io/posts/2013/04/scraping_metadata.html</link><category>R</category><category>Python</category><category>Bioinformatics</category><description>&lt;h1&gt;Scraping organism metadata for Treebase repositories from GOLD using Python and R&lt;/h1&gt;
+
+&lt;p&gt;I recently wanted to get hold of habitat/phenotype/sequencing metadata for the individual organisms of  an archived &lt;a href=&quot;http://treebase.org/treebase-web/home.html&quot;&gt;Treebase&lt;/a&gt; project.)&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;http://www.genomesonline.org/&quot;&gt;GOLD&lt;/a&gt; database holds  more than 18000 full genomes.  For many of these it provides pretty good metadata (&lt;a href=&quot;http://genomesonline.org/cgi-bin/GOLD/bin/GOLDCards.cgi?goldstamp=Gc00536&quot;&gt;GOLDcards&lt;/a&gt;) which are indirectly linked  to Treebase via &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/taxonomy&quot;&gt;NCBI&lt;/a&gt; taxa &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;amp;amp;id=122368&quot;&gt;IDs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately GOLD does not seem to have any kind of API for systematic downloads, so I hacked together a very &lt;a href=&quot;https://gist.github.com/2929217&quot;&gt;quick-and-dirty scraper&lt;/a&gt; in Python that reads in taxa from a Treebase repo, follows the links to each species NCBI page and downloads the linked GOLDcard, if it exists.&lt;/p&gt;
+
+&lt;p&gt;Here is the code. You will need the external BeautifulSoup and lxml libraries for this to work - both are fantastic. (The Treebase repo here is from Wu et al. 2009**, just change the url string for a different repo&amp;hellip;):&lt;/p&gt;
+
+&lt;p&gt;Once you have downloaded all of the available files, It would be great to have your metadata in a nice flatfile with one line per taxa, right?  I did this with a little &lt;a href=&quot;https://gist.github.com/2929366&quot;&gt;R script&lt;/a&gt; using the rather wonderful readHTMLtable() function in the XML (install.packages(&amp;#39;XML&amp;#39;)) package. &lt;/p&gt;
+
+&lt;p&gt;The output is a semicolon separated file with taxa in the rows and the different categories of metadata in columns. The metadata is often fairly incomplete, and  there are plenty of omissions, but hopefully it will become more useful as more deposits are made to GOLD.&lt;/p&gt;
+
+&lt;p&gt;** Wu D., Hugenholtz P., Mavromatis K., Pukall R., Dalin E., Ivanova N.N., Kunin V., Goodwin L., Wu M., Tindall B.J., Hooper S.D., Pati A., Lykidis A., Spring S., Anderson I.J., D’haeseleer P., Zemla A., Singer M., Lapidus A., Nolan M., Copeland A., Chen F., Cheng J., Lucas S., Kerfeld C., Lang E., Gronow S., Chain P., Bruce D., Rubin E.M., Kyrpides N.C., Klenk H., &amp;amp; Eisen J.A. 2009. A phylogeny-driven genomic encyclopaedia of Bacteria and Archaea. Nature, 462(7276): 1056-1060.&lt;/p&gt;
 </description></item>
   </channel>
 </rss>

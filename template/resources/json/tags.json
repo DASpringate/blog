@@ -1,7 +1,7 @@
 {
  "R": {
- "titles": [ "Two R tutorials for beginners", "Scraping organism metadata for Treebase repositories from GOLD using Python and R", "Functional programming in R" ],
-"urls": [ "posts/2013/04/beginners_tutorials.html", "posts/2013/04/scraping_metadata.html", "posts/2013/05/Functional_programming_in_R.html" ] 
+ "titles": [ "Two R tutorials for beginners", "Scraping organism metadata for Treebase repositories from GOLD using Python and R", "Functional programming in R", "Develop in RStudio, run in RScript", "Mapping academic collaborations in Evolutionary Biology" ],
+"urls": [ "posts/2013/04/beginners_tutorials.html", "posts/2013/04/scraping_metadata.html", "posts/2013/05/Functional_programming_in_R.html", "posts/2013/05/RStudio_server_tips.html", "posts/2013/05/Evolutionary_biology_social_network.html" ] 
 },
 "tutorials": {
  "titles": "Two R tutorials for beginners",
@@ -16,8 +16,8 @@
 "urls": "posts/2013/04/beginners_tutorials.html" 
 },
 "Python": {
- "titles": "Scraping organism metadata for Treebase repositories from GOLD using Python and R",
-"urls": "posts/2013/04/scraping_metadata.html" 
+ "titles": [ "Scraping organism metadata for Treebase repositories from GOLD using Python and R", "Mapping academic collaborations in Evolutionary Biology" ],
+"urls": [ "posts/2013/04/scraping_metadata.html", "posts/2013/05/Evolutionary_biology_social_network.html" ] 
 },
 "Bioinformatics": {
  "titles": "Scraping organism metadata for Treebase repositories from GOLD using Python and R",
@@ -34,5 +34,17 @@
 "Closures": {
  "titles": "Functional programming in R",
 "urls": "posts/2013/05/Functional_programming_in_R.html" 
+},
+"RStudio": {
+ "titles": "Develop in RStudio, run in RScript",
+"urls": "posts/2013/05/RStudio_server_tips.html" 
+},
+"Multicore": {
+ "titles": "Develop in RStudio, run in RScript",
+"urls": "posts/2013/05/RStudio_server_tips.html" 
+},
+"Visualisations": {
+ "titles": "Mapping academic collaborations in Evolutionary Biology",
+"urls": "posts/2013/05/Evolutionary_biology_social_network.html" 
 } 
 }

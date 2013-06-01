@@ -5,6 +5,10 @@
                   c("/pages/research.html", "Research"),
                   c("/pages/papers.html", "Papers"),
                   c("https://github.com/DASpringate", "Github"))
+    blogroll <- list(c("http://www.r-bloggers.com/", "R bloggers"),
+                     c("http://planet.clojure.in/", "Planet Clojure"),
+                     c("http://planetbigdata.com/", "Planet Big Data"),
+                     c("http://www.statsblogs.com/", "Statsblogs"))
     webdoc("html5",
            html_head(title = "David Springate's blog",
                      '<meta charset="utf-8"><meta content="width=device-width, initiali-scale=1.0, user-scalable=yes" name="viewport">',
@@ -14,7 +18,7 @@
                      include.textfile(file.path(site, "template/resources/html/google_analytics")),
                      m("div.container-fluid well",
                        m("h1", "What is this?"),
-                       m("p", "David Springate's blog on programming, data, informatics and biostatistics")),
+                       m("p", "David Springate's blog on programming, data, informatics and biostatistics ")),
                      m("div.subnav",
                        unordered.list(lapply(links, function(x) link.to(x[1], x[2])),
                                       list.opts = list(class="nav nav-pills"))),
@@ -26,9 +30,12 @@
                          m("div.span1"),
                          m("div.span9", content(page, 
                                                 include.textfile(file.path(site, "template/resources/html/disqus")))),
-                         m("div.span2", 
+                         m("div.span2",
+                           include.textfile(file.path(site, "template/resources/html/feedburner")),
                            m("h3", "Tags"),
-                           html.taglist(site))),
+                           html.taglist(site),
+                           m("h3", "Blogs"),
+                           unordered.list(lapply(blogroll, function(x) link.to(x[1], x[2]))))),
                        m("div.span12",
                          m("div.span2"),
                          m("div.span8",
@@ -37,5 +44,5 @@
                                link.to("#", "&uArr; Page Top")),
                              m("p",
                                link.to("http://twitter.com/datajujitsu", "@datajujitsu"),
-                               "&nbsp; 2013")))))))
+                               "&nbsp; 2013 ", link.to("https://github.com/DASpringate/samatha", "Built in R with Samatha"))))))))
 })(page)

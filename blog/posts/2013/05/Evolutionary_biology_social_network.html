@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head title="David Springate's blog"><meta charset="utf-8"><meta content="width=device-width, initiali-scale=1.0, user-scalable=yes" name="viewport"><a rel="alternate" title="David Springate's blog RSS feed" type="application/rss+xml" href="/rss.xml"></a><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40926137-1', 'github.com');
+  ga('send', 'pageview');
+
+</script><div class="container-fluid well"><h1>What is this?</h1><p>David Springate's blog on programming, data, informatics and biostatistics </p></div><div class="subnav"><ul class="nav nav-pills"><li><a href="/index.html">Home</a></li><li><a href="/pages/about.html">About</a></li><li><a href="/pages/research.html">Research</a></li><li><a href="/pages/papers.html">Papers</a></li><li><a href="https://github.com/DASpringate">Github</a></li></ul></div><link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="/css/smartphone.css" media="only screen and (max-device-width:480px)" rel="stylesheet" type="text/css"></head><body><div class="container-fluid"><div class="row-fluid"><div class="span1"></div><div class="span9"><h1>Mapping academic collaborations in Evolutionary Biology</h1>
+
+<p><em>This post is a republication of a visualisation I did in 2011 for my (now defunct) datajujitsu.co.uk blog.  It was a naive first attempt at web-scraping from an academic publishers website.  It was done before I was aware of the problems surrounding access to, and text-mining of, online academic content hosted by publishers such as Wiley and Elsevier. Producing such a piece now (in 2013) would certainly be regarded as a political act. The text and visualisations are unchanged from the original</em></p>
+
+<p>Like many people, I was immensely impressed with Paul Butler&#39;s <a href="http://paulbutler.org/archives/visualizing-facebook-friends/">global map of facebook friend connections</a>, a spectacular way of visualising, and humanising, a large amount of raw data.
+I was further impressed to find out that he did it solely using R. I recently found Flowingdata&#39;s <a href="http://flowingdata.com/2011/05/11/how-to-map-connections-with-great-circles/">tutorial</a> on creating the same effect using flight information and got to thinking about what other datasets I could apply it to.
+My original plan was to build a scraper to get all of the abstracts from a particular subject from <a href="http://www.ncbi.nlm.nih.gov/pubmed/">Pubmed</a> and visualise the academic collaborations between institutions for all of these abstracts. Unfortunately though, Pubmed only stores the addresses of the institutions of the corresponding author, so I decided to stick with my own subject, evolutionary biology, and get all the abstacts from the journals <a href="http://onlinelibrary.wiley.com/journal/10.1111/(ISSN">Evolution</a>1558-5646) and <a href="http://onlinelibrary.wiley.com/journal/10.1111/(ISSN">Evolutionary Biology</a>1420-9101) since 2009. I could then extract these using a hacked together Python script which would then feed the addresses into the <a href="http://developer.yahoo.com/geo/placefinder/">Yahoo PlaceFinder</a> api to get a data set of coordinates for each cross-institution collaboration in every paper published in the journals for the last two and a half years.
+I then fed this data into R, generated great circles for each of the collaborations using the geosphere package and processed it a la FlowingData to get the following global map of academic collaboration in evolutionary biology since 2009:</p>
+
+<p><img src="/img/evolution_social_network.png" alt="Evolution social network 2009-2011"/></p>
+
+<p>You can clearly see the main hubs of collaboration in Europe and the East and West coasts of the USA, with smaller hubs in Japan and South-Eastern Australia. There are further actively collaborating institutions in South America and Africa, but almost all of their collaborations are with North american and European Universities. Looking into the data itself, the median longitude for JEB institutions is firmly in Europe, while the median longitude for Evolution in the USA (This makes sense since Evolution is based in the states while JEB is a European journal, though there is no geographic imperative to publish in either).
+Technical info:
+I scraped the data from the Wiley website for the two journals using Python and BeautifulSoup. For the R analysis I used the modules maps, geosphere, reshape and gdata.</p>
+<h6>Posted on 2013-05-31</h6><div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'daspringate'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+</div><div class="span2"><a href="http://feeds.feedburner.com/DavidSpringatesBlog" title="Subscribe to my feed" rel="alternate" type="application/rss+xml"><img src="//feedburner.google.com/fb/images/pub/feed-icon32x32.png" alt="" style="border:0"/></a><a href="http://feeds.feedburner.com/DavidSpringatesBlog" title="Subscribe" rel="alternate" type="application/rss+xml">Subscribe </a>
+<h3>Tags</h3><ul><li><a href="/tags/R.html">R (5)</a></li><li><a href="/tags/tutorials.html">tutorials (1)</a></li><li><a href="/tags/subsetting.html">subsetting (1)</a></li><li><a href="/tags/vectorisation.html">vectorisation (1)</a></li><li><a href="/tags/Python.html">Python (2)</a></li><li><a href="/tags/Bioinformatics.html">Bioinformatics (1)</a></li><li><a href="/tags/functional-programming.html">functional-programming (1)</a></li><li><a href="/tags/Lisp.html">Lisp (1)</a></li><li><a href="/tags/Closures.html">Closures (1)</a></li><li><a href="/tags/RStudio.html">RStudio (1)</a></li><li><a href="/tags/Multicore.html">Multicore (1)</a></li><li><a href="/tags/Visualisations.html">Visualisations (1)</a></li></ul><h3>Blogs</h3><ul><li><a href="http://www.r-bloggers.com/">R bloggers</a></li><li><a href="http://planet.clojure.in/">Planet Clojure</a></li><li><a href="http://planetbigdata.com/">Planet Big Data</a></li><li><a href="http://www.statsblogs.com/">Statsblogs</a></li></ul></div></div><div class="span12"><div class="span2"></div><div class="span8"><footer class="footer"><p class="right back_to_top"><a href="#">&uArr; Page Top</a></p><p><a href="http://twitter.com/datajujitsu">@datajujitsu</a>&nbsp; 2013 <a href="https://github.com/DASpringate/samatha">Built in R with Samatha</a></p></footer></div></div></div></body></html>
