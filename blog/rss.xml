@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?><rss version="2.0">
   <channel>
     <title>What is this? David Springate's personal blog</title>
-    <link>http://daspringate.github.com</link>
+    <link>http://daspringate.github.io</link>
     <description>David Springate's personal blog on programming, data, informatics, biostatistics and evolution</description>
     <category>R</category>
     <category>Clojure</category>
@@ -10,7 +10,7 @@
     <category>biostatistics</category>
     <item><title>Mapping academic collaborations in Evolutionary Biology</title><link>http://daspringate.github.io/posts/2013/05/Evolutionary_biology_social_network.html</link><category>Python</category><category>R</category><category>Visualisations</category><description>&lt;h1&gt;Mapping academic collaborations in Evolutionary Biology&lt;/h1&gt;
 
-&lt;p&gt;&lt;em&gt;This post is a repubication of a visualisation I did in 2011 for my (now defunct) datajujitsu.co.uk blog.  It was a naive first attempt at web-scraping from an academic publishers website.  It was done before I was aware of the problems surrounding access to, and text-mining of, online academic content hosted by publishers such as Wiley and Elsevier. Producing such a piece now (in 2013) would certainly be regarded as a political act. The text and visualisations are unchanged from the original&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This post is a republication of a visualisation I did in 2011 for my (now defunct) datajujitsu.co.uk blog.  It was a naive first attempt at web-scraping from an academic publishers website.  It was done before I was aware of the problems surrounding access to, and text-mining of, online academic content hosted by publishers such as Wiley and Elsevier. Producing such a piece now (in 2013) would certainly be regarded as a political act. The text and visualisations are unchanged from the original&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Like many people, I was immensely impressed with Paul Butler&amp;#39;s &lt;a href=&quot;http://paulbutler.org/archives/visualizing-facebook-friends/&quot;&gt;global map of facebook friend connections&lt;/a&gt;, a spectacular way of visualising, and humanising, a large amount of raw data.
 I was further impressed to find out that he did it solely using R. I recently found Flowingdata&amp;#39;s &lt;a href=&quot;http://flowingdata.com/2011/05/11/how-to-map-connections-with-great-circles/&quot;&gt;tutorial&lt;/a&gt; on creating the same effect using flight information and got to thinking about what other datasets I could apply it to.
@@ -302,9 +302,9 @@ apply(bstrap, MARGIN=1, FUN=quantile,
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;##       (Intercept) Petal.Length
-## 2.5%        4.155       0.3703
-## 50%         4.311       0.4083
-## 97.5%       4.458       0.4485
+## 2.5%        4.162       0.3701
+## 50%         4.304       0.4098
+## 97.5%       4.448       0.4472
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This is an elegant way to solve a common analysis problem in R.  If you are running a large model and you want to speed things up (and you have a few cores free!), it is a simple task and a couple of lines of code to replace the call to &lt;code&gt;sapply&lt;/code&gt; to one to &lt;code&gt;multicore::mclapply&lt;/code&gt; and run the model on as many processor cores as you can.&lt;/p&gt;
@@ -338,9 +338,9 @@ cbind( &amp;quot;(Intercept)&amp;quot;=quantile(bstrap2[,1],probs = CIs),
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;##       (Intercept) Petal.Length
-## 2.5%        4.161       0.3679
-## 50%         4.300       0.4106
-## 97.5%       4.450       0.4485
+## 2.5%        4.169       0.3699
+## 50%         4.310       0.4081
+## 97.5%       4.448       0.4414
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The code duplication in the &lt;code&gt;cbind&lt;/code&gt; is a pain, as is having to name the coefficients directly.  Both of these reduce the generalisability of the algorithm.&lt;/p&gt;

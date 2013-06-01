@@ -211,9 +211,9 @@ apply(bstrap, MARGIN=1, FUN=quantile,
 </code></pre>
 
 <pre><code>##       (Intercept) Petal.Length
-## 2.5%        4.161       0.3731
-## 50%         4.305       0.4088
-## 97.5%       4.445       0.4453
+## 2.5%        4.162       0.3701
+## 50%         4.304       0.4098
+## 97.5%       4.448       0.4472
 </code></pre>
 
 <p>This is an elegant way to solve a common analysis problem in R.  If you are running a large model and you want to speed things up (and you have a few cores free!), it is a simple task and a couple of lines of code to replace the call to <code>sapply</code> to one to <code>multicore::mclapply</code> and run the model on as many processor cores as you can.</p>
@@ -247,9 +247,9 @@ cbind( &quot;(Intercept)&quot;=quantile(bstrap2[,1],probs = CIs),
 </code></pre>
 
 <pre><code>##       (Intercept) Petal.Length
-## 2.5%        4.161       0.3710
-## 50%         4.303       0.4109
-## 97.5%       4.450       0.4464
+## 2.5%        4.169       0.3699
+## 50%         4.310       0.4081
+## 97.5%       4.448       0.4414
 </code></pre>
 
 <p>The code duplication in the <code>cbind</code> is a pain, as is having to name the coefficients directly.  Both of these reduce the generalisability of the algorithm.</p>

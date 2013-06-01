@@ -1,5 +1,5 @@
 
-(function(page){
+(function(page){ 
     links <- list(c("/index.html", "Home"),
                   c("/pages/about.html", "About"),
                   c("/pages/research.html", "Research"),
